@@ -1,7 +1,7 @@
 define([ 'backbone', 'backbone-queryparams' ], function (Backbone) {
     var AppRouter = Backbone.Router.extend({
         routes: {
-            '': 'login',
+            '': 'home',
             'home': 'home',
             'login': 'login',
             'users': 'users',

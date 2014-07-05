@@ -7,6 +7,6 @@ import org.springframework.context.annotation.Primary;
 import javax.inject.Named;
 
 @Named("userRepository")
-public interface MyUserRepository extends UserRepository<User, String> {
+public interface MyUserRepository extends UserRepository<User, Long> {
 
 }

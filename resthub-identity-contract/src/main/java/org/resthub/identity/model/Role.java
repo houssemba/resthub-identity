@@ -71,7 +71,7 @@ public class Role implements Serializable {
      *
      * @return the permissions assigned to the role.
      */
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "role_permission")
     @JsonView({SummarizeView.class})
     public List<Permission> getPermissions() {

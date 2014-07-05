@@ -16,7 +16,7 @@ import javax.inject.Named;
  * Sample for bean override
  */
 @Named("userService")
-public class MySuperUserService extends UserServiceImpl<User, String, MyUserRepository> {
+public class MySuperUserService extends UserServiceImpl<User, Long, MyUserRepository> {
     private static final Logger LOGGER = LoggerFactory.getLogger(MySuperUserService.class);
 
     @Inject

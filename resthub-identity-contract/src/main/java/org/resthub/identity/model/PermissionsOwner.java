@@ -100,7 +100,7 @@ public abstract class PermissionsOwner implements Serializable {
      *
      * @return the list of roles assigned to the identity.
      */
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "permissions_owner_roles")
     @JsonView({ProfileView.class})
     public List<Role> getRoles() {
@@ -121,7 +121,7 @@ public abstract class PermissionsOwner implements Serializable {
      * @return the list of groups in which the user is. The List could be null
      * is the user is in no group
      */
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "permissions_owner_groups",
             joinColumns = @JoinColumn(name = "permissions_owner", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "id"))

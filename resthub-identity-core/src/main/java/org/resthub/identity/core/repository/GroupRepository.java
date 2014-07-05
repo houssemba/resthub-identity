@@ -26,7 +26,7 @@ public interface GroupRepository<T extends Group, I extends Serializable> extend
      * @param groupName The name of the group.
      * @return A list of groups corresponding to the given group.
      */
-    @Query("SELECT DISTINCT g.roles FROM Group g WHERE g.name = :groupName")
+    @Query("SELECT DISTINCT g.roles FROM Group g WHERE lower(g.name) = lower(:groupName)")
     List<Role> findRolesFromGroup(@Param("groupName") String groupName);
 
     /**

@@ -20,7 +20,7 @@ import javax.inject.Named;
  */
 @Controller
 @RequestMapping("/api/user")
-public class MyUserController extends UserControllerImpl<User, String, MySuperUserService> {
+public class MyUserController extends UserControllerImpl<User, Long, MySuperUserService> {
     /**
      * Override this methods in order to secure it *
      */
