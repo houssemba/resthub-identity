@@ -26,7 +26,27 @@
     <bean id="esNode" class="fr.pilato.spring.elasticsearch.ElasticsearchNodeFactoryBean"/>
     <bean id="esClient" class="fr.pilato.spring.elasticsearch.ElasticsearchClientFactoryBean"/>
 
-    <security:http create-session="always" auto-config="true" use-expressions="true" pattern="/**">
+    <!-- web app ajx/form-based login configuration -->
+    <bean id="nonAjaxRequestMatcher" class="org.resthub.identity.webapp.util.NonAjaxRequestMatcher" />
+
+    <bean id="loginUrlAuthenticationEntryPoint"
+          class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+        <constructor-arg value="/index.html#login" />
+    </bean>
+
+    <bean id="ajaxAuthenticationEntryPoint" class="org.springframework.security.web.authentication.Http403ForbiddenEntryPoint" />
+
+    <bean id="authenticationEntryPoint"
+          class="org.springframework.security.web.authentication.DelegatingAuthenticationEntryPoint">
+        <constructor-arg>
+            <map>
+                <entry key-ref="nonAjaxRequestMatcher" value-ref="loginUrlAuthenticationEntryPoint" />
+            </map>
+        </constructor-arg>
+        <property name="defaultEntryPoint" ref="ajaxAuthenticationEntryPoint" />
+    </bean>
+
+    <security:http create-session="always" auto-config="true" use-expressions="true" pattern="/**" entry-point-ref="authenticationEntryPoint">
         <security:session-management session-fixation-protection="none"/>
         <security:intercept-url pattern="/management.html" access="authenticated"/>
         <security:intercept-url pattern="/j_spring_security_check" access="permitAll"/>
@@ -35,9 +55,11 @@
         <security:intercept-url pattern="/img/**" access="permitAll"/>
         <security:intercept-url pattern="/js/**" access="permitAll"/>
         <security:intercept-url pattern="/template/**" access="permitAll"/>
-        <security:form-login login-page="/index.html#login" default-target-url="/management.html"
-                             always-use-default-target="true"/>
         <security:logout logout-success-url="/index.html"/>
-        <security:access-denied-handler/>
     </security:http>
+
+
+
+
+
 </beans>

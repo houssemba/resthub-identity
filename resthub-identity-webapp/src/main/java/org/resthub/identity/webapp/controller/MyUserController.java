@@ -7,11 +7,15 @@ import org.resthub.identity.webapp.service.impl.MySuperUserService;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.nio.file.AccessDeniedException;
 
 /**
  * Front controller for User Management<br/>
@@ -36,4 +40,5 @@ public class MyUserController extends UserControllerImpl<User, Long, MySuperUser
     public void setService(MySuperUserService userService) {
         super.setService(userService);
     }
+
 }

@@ -8,7 +8,8 @@ define([ 'backbone', 'backbone-queryparams' ], function (Backbone) {
             'groups': 'groups',
             'roles': 'roles',
             'group-roles': 'groupRoles',
-            'about': 'about'
+            'about': 'about',
+            'access-denied' : 'accessDenied'
         },
 
         home: function () {
